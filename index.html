@@ -621,7 +621,7 @@
         }
 
         // Mettre à jour une commande
-        function updateCommand(sheetRow, field, value) {
+        async function updateCommand(sheetRow, field, value) {
             const cmd = appState.commands.find(c => c.sheetRow === sheetRow);
             if (cmd) {
                 cmd[field] = value;
@@ -635,10 +635,35 @@
                 }
 
                 saveData();
+                
+                // Envoyer la modification vers Google Sheets
+                try {
+                    await fetch('https://script.google.com/macros/s/AKfycbzsS-ZVZw1135BRIDgO1p0DYM_l_AUal9fULfPJq4XzMNNq6fTSvnaoX27Y0kHiH5G_FA/exec', {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(cmd)
+                    });
+                } catch (error) {
+                    console.error('Erreur sauvegarde Google Sheets:', error);
+                }
+                
                 updateCommandsTable();
                 updateDashboard();
             }
         }
+```
+
+---
+
+## 📝 **Description du commit :**
+```
+Sauvegarde automatique vers Google Sheets
+```
+
+**Ou plus détaillé :**
+```
+Ajout de l'envoi automatique des modifications vers Google Sheets (colonnes H-M) lors de chaque changement de commande
 
         // Mettre à jour les filtres
         function updateFilters() {
@@ -1015,3 +1040,4 @@
 </body>
 
 </html>
+
