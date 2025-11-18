@@ -450,31 +450,20 @@
             if (tabName === 'equipe') updateEquipeStats();
         }
 
-        // Synchroniser avec Google Sheets
+// Synchroniser avec Google Sheets
         async function syncGoogleSheets() {
             try {
                 const response = await fetch('https://script.google.com/macros/s/AKfycbzsS-ZVZw1135BRIDgO1p0DYM_l_AUal9fULfPJq4XzMNNq6fTSvnaoX27Y0kHiH5G_FA/exec');
                 const data = await response.json();
 
                 let newCount = 0;
-                data.forEach((row, index) => {
-                    const sheetRow = index + 2;
-                    const existing = appState.commands.find(cmd => cmd.sheetRow === sheetRow);
-
-                    if (existing) {
-                        // Mettre à jour seulement les colonnes de base
-                        existing.id = row['Order ID'] || '';
-                        existing.date = row['Order date'] || '';
-                        existing.produit = row['Product name'] || '';
-                        existing.nom = row['Nom et Prenom'] || '';
-                        existing.email = row['Email'] || '';
-                        existing.telephone = row['Phone'] || '';
-                        existing.ville = row['City'] || '';
-                        existing.lienWha = `https://wa.me/+225${row['Phone']}`;
-                    } else {
+                data.forEach(row => {
+                    const existing = appState.commands.find(cmd => cmd.sheetRow === row.sheetRow);
+                    
+                    if (!existing) {
                         // Nouvelle commande
                         appState.commands.push({
-                            sheetRow: sheetRow,
+                            sheetRow: row.sheetRow,
                             id: row['Order ID'] || '',
                             date: row['Order date'] || '',
                             produit: row['Product name'] || '',
@@ -482,16 +471,32 @@
                             email: row['Email'] || '',
                             telephone: row['Phone'] || '',
                             ville: row['City'] || '',
-                            statut: 'Nouveau',
-                            closing: '',
-                            livreur: '',
-                            montant: 0,
-                            com1: '',
-                            com2: '',
+                            statut: row['Statut'] || 'Nouveau',
+                            closing: row['Closing'] || '',
+                            livreur: row['Livreur'] || '',
+                            montant: parseFloat(row['Montant']) || 0,
+                            com1: row['Com1'] || '',
+                            com2: row['Com2'] || '',
                             lienWha: `https://wa.me/+225${row['Phone']}`,
                             dateModif: new Date().toISOString()
                         });
                         newCount++;
+                    } else {
+                        // Commande existante : mettre à jour depuis Google Sheets
+                        existing.id = row['Order ID'] || existing.id;
+                        existing.date = row['Order date'] || existing.date;
+                        existing.produit = row['Product name'] || existing.produit;
+                        existing.nom = row['Nom et Prenom'] || existing.nom;
+                        existing.email = row['Email'] || existing.email;
+                        existing.telephone = row['Phone'] || existing.telephone;
+                        existing.ville = row['City'] || existing.ville;
+                        existing.statut = row['Statut'] || existing.statut;
+                        existing.closing = row['Closing'] || existing.closing;
+                        existing.livreur = row['Livreur'] || existing.livreur;
+                        existing.montant = parseFloat(row['Montant']) || existing.montant;
+                        existing.com1 = row['Com1'] || existing.com1;
+                        existing.com2 = row['Com2'] || existing.com2;
+                        existing.lienWha = `https://wa.me/+225${row['Phone']}`;
                     }
                 });
 
@@ -1008,4 +1013,5 @@
         });
     </script>
 </body>
+
 </html>
