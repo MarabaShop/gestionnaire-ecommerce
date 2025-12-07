@@ -273,7 +273,7 @@
                                     <th class="px-2 py-3 text-left text-xs font-semibold text-gray-700">Email</th>
                                     <th class="px-2 py-3 text-left text-xs font-semibold text-gray-700">Téléphone</th>
                                     <th class="px-2 py-3 text-left text-xs font-semibold text-gray-700">Ville</th>
-                                    <th class="px-2 py-3 text-left text-xs font-semibold text-gray-700">Statut</th>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-700">Statut</th>
                                     <th class="px-2 py-3 text-left text-xs font-semibold text-gray-700">Closing</th>
                                     <th class="px-2 py-3 text-left text-xs font-semibold text-gray-700">Livreur</th>
                                     <th class="px-2 py-3 text-left text-xs font-semibold text-gray-700">Montant</th>
@@ -586,8 +586,8 @@
                             </a>
                         </td>
                         <td class="px-2 py-2 text-xs">${cmd.ville}</td>
-                        <td class="px-2 py-2">
-                            <select onchange="updateCommand(${cmd.sheetRow}, 'statut', this.value)" class="border rounded px-1 py-1 text-xs w-full">
+                        <td class="px-6 py-2">
+                            <select onchange="updateCommand(${cmd.sheetRow}, 'statut', this.value)" class="border rounded px-2 py-2 text-sm w-full">
                                 ${appState.statuts.map(s => `<option value="${s}" ${cmd.statut === s ? 'selected' : ''}>${s}</option>`).join('')}
                             </select>
                         </td>
@@ -1027,5 +1027,6 @@
     </script>
 </body>
 </html>
+
 
 
