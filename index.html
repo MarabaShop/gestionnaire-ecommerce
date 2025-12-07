@@ -641,9 +641,7 @@
 
                             <div class="flex items-center gap-1">
                                 <!-- Le numéro affiché en texte simple -->
-                                <span class="font-semibold text-gray-900">
-                                    ${cmd.telephone}
-                                </span>
+
 
                                 <!-- Bouton Appel -->
                                 <a href="tel:${cmd.telephone}"
@@ -663,7 +661,7 @@
 
 
                             
-                            <a href="${cmd.lienWha}" target="_blank" class="${isDuplicate ? 'duplicate-phone' : 'text-green-600'}">
+                            <a href="${cmd.lienWha}" target="_blank" class="${isDuplicate ? 'duplicate-phone' : 'text-gray-600'}">
                                 ${cmd.telephone}
                                 ${isDuplicate ? '<span class="ml-1 bg-red-500 text-white text-xs px-2 py-0.5 rounded">DOUBLON</span>' : ''}
                             </a>
@@ -1112,4 +1110,5 @@
     </script>
 </body>
 </html>
+
 
