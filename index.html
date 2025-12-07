@@ -586,8 +586,8 @@
                             </a>
                         </td>
                         <td class="px-2 py-2 text-xs">${cmd.ville}</td>
-                        <td class="px-6 py-2">
-                            <select onchange="updateCommand(${cmd.sheetRow}, 'statut', this.value)" class="border rounded px-2 py-2 text-sm w-full">
+                        <td class="px-10 py-3">
+                            <select onchange="updateCommand(${cmd.sheetRow}, 'statut', this.value)" class="border rounded px-10 py-3 text-sm w-full">
                                 ${appState.statuts.map(s => `<option value="${s}" ${cmd.statut === s ? 'selected' : ''}>${s}</option>`).join('')}
                             </select>
                         </td>
@@ -1027,6 +1027,7 @@
     </script>
 </body>
 </html>
+
 
 
 
