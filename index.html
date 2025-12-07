@@ -47,36 +47,164 @@
             font-weight: bold;
         }
         
-        #tableContainer {
-            max-height: calc(100vh - 250px);
-            overflow: auto;
-            position: relative;
+        /* Styles DESKTOP */
+        @media (min-width: 768px) {
+            .vue-mobile {
+                display: none !important;
+            }
+            
+            .vue-desktop {
+                display: block !important;
+            }
+            
+            #tableContainer {
+                max-height: calc(100vh - 250px);
+                overflow: auto;
+                position: relative;
+            }
+            
+            #commandsTable thead {
+                position: sticky;
+                top: 0;
+                z-index: 10;
+                background: white;
+            }
+            
+            #commandsTable td:nth-child(1),
+            #commandsTable td:nth-child(2),
+            #commandsTable th:nth-child(1),
+            #commandsTable th:nth-child(2) {
+                position: sticky;
+                background: white;
+                z-index: 5;
+            }
+            
+            #commandsTable td:nth-child(1),
+            #commandsTable th:nth-child(1) {
+                left: 0;
+            }
+            
+            #commandsTable td:nth-child(2),
+            #commandsTable th:nth-child(2) {
+                left: 50px;
+            }
         }
         
-        #commandsTable thead {
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            background: white;
-        }
-        
-        #commandsTable td:nth-child(1),
-        #commandsTable td:nth-child(2),
-        #commandsTable th:nth-child(1),
-        #commandsTable th:nth-child(2) {
-            position: sticky;
-            background: white;
-            z-index: 5;
-        }
-        
-        #commandsTable td:nth-child(1),
-        #commandsTable th:nth-child(1) {
-            left: 0;
-        }
-        
-        #commandsTable td:nth-child(2),
-        #commandsTable th:nth-child(2) {
-            left: 50px;
+        /* Styles MOBILE */
+        @media (max-width: 767px) {
+            .vue-mobile {
+                display: block !important;
+            }
+            
+            .vue-desktop {
+                display: none !important;
+            }
+            
+            .command-card {
+                background: white;
+                border-radius: 12px;
+                padding: 16px;
+                margin-bottom: 12px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                border-left: 4px solid #667eea;
+            }
+            
+            .command-card-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 12px;
+                padding-bottom: 12px;
+                border-bottom: 1px solid #e5e7eb;
+            }
+            
+            .command-card-id {
+                font-size: 0.75rem;
+                color: #6b7280;
+                font-weight: 600;
+            }
+            
+            .command-card-name {
+                font-size: 1rem;
+                font-weight: bold;
+                color: #1f2937;
+            }
+            
+            .command-card-info {
+                margin-bottom: 8px;
+                display: flex;
+                align-items: center;
+                font-size: 0.875rem;
+            }
+            
+            .command-card-label {
+                font-weight: 600;
+                color: #4b5563;
+                min-width: 80px;
+            }
+            
+            .command-card-value {
+                color: #1f2937;
+                flex: 1;
+            }
+            
+            .mobile-select, .mobile-input, .mobile-textarea {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #d1d5db;
+                border-radius: 8px;
+                font-size: 0.875rem;
+                margin-top: 4px;
+                touch-action: manipulation;
+            }
+            
+            .mobile-textarea {
+                min-height: 60px;
+            }
+            
+            .btn-mobile {
+                width: 100%;
+                padding: 12px;
+                border-radius: 8px;
+                font-weight: 600;
+                font-size: 0.875rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                touch-action: manipulation;
+            }
+            
+            .mobile-header {
+                padding: 12px 16px !important;
+            }
+            
+            .mobile-header h1 {
+                font-size: 1.25rem !important;
+            }
+            
+            .mobile-nav {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .mobile-nav .flex {
+                min-width: max-content;
+            }
+            
+            .tab-btn {
+                white-space: nowrap;
+                padding: 12px 16px !important;
+                font-size: 0.875rem !important;
+            }
+            
+            .stat-card {
+                padding: 16px !important;
+            }
+            
+            .hidden-mobile {
+                display: none !important;
+            }
         }
         
         .tab-btn {
@@ -105,8 +233,8 @@
 <body class="bg-gray-50">
     
     <!-- Écran de connexion -->
-    <div id="loginScreen" class="login-bg flex items-center justify-center">
-        <div class="glass-card p-8 w-96">
+    <div id="loginScreen" class="login-bg flex items-center justify-center p-4">
+        <div class="glass-card p-8 w-full max-w-md">
             <div class="text-center mb-8">
                 <div class="text-6xl mb-4 animate-bounce">📦</div>
                 <h1 class="text-3xl font-bold text-gray-800">Gestionnaire Maraba Shop</h1>
@@ -114,7 +242,7 @@
             <div class="space-y-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Nom d'utilisateur</label>
-                    <input type="text" id="username" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple-500 focus:outline-none" placeholder="Entrez votre identifiant">
+                    <input type="text" id="username" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple-500 focus:outline-none" placeholder="admin, juliana ou patricia">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Mot de passe</label>
@@ -131,36 +259,38 @@
     <!-- Application principale -->
     <div id="mainApp" class="hidden">
         <!-- Header -->
-        <header class="bg-white shadow-md sticky top-0 z-20">
-            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-                <div class="flex items-center space-x-4">
-                    <h1 class="text-2xl font-bold text-gray-800">📦 Gestionnaire Maraba Shop</h1>
-                    <span id="userRole" class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold"></span>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <button onclick="syncGoogleSheets()" class="btn-gradient text-white px-4 py-2 rounded-lg flex items-center space-x-2">
-                        <span>🔄</span>
-                        <span>Synchroniser</span>
-                    </button>
-                    <button onclick="exportJSON()" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
-                        📥 Exporter
-                    </button>
-                    <button onclick="logout()" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
-                        🚪 Déconnexion
-                    </button>
+        <header class="bg-white shadow-md sticky top-0 z-20 mobile-header">
+            <div class="container mx-auto px-4 py-4">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-2">
+                        <h1 class="text-xl md:text-2xl font-bold text-gray-800">📦 Maraba Shop</h1>
+                        <span id="userRole" class="px-2 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-semibold"></span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="syncGoogleSheets()" class="btn-gradient text-white px-3 py-2 rounded-lg flex items-center space-x-1 text-sm">
+                            <span>🔄</span>
+                            <span class="hidden md:inline">Synchro</span>
+                        </button>
+                        <button onclick="exportJSON()" class="hidden-mobile bg-green-500 text-white px-3 py-2 rounded-lg hover:bg-green-600 text-sm">
+                            📥
+                        </button>
+                        <button onclick="logout()" class="bg-red-500 text-white px-3 py-2 rounded-lg hover:bg-red-600 text-sm">
+                            🚪
+                        </button>
+                    </div>
                 </div>
             </div>
         </header>
 
         <!-- Navigation -->
-        <nav class="bg-white border-b sticky top-16 z-10">
+        <nav class="bg-white border-b sticky top-16 md:top-20 z-10 mobile-nav">
             <div class="container mx-auto px-4">
                 <div class="flex space-x-2">
-                    <button onclick="showTab('dashboard')" class="tab-btn tab-active px-6 py-3 font-semibold rounded-t-lg" data-tab="dashboard">📊 Dashboard</button>
-                    <button onclick="showTab('commandes')" class="tab-btn px-6 py-3 font-semibold rounded-t-lg hover:bg-gray-100" data-tab="commandes">📦 Commandes</button>
-                    <button onclick="showTab('depenses')" id="depensesTab" class="tab-btn px-6 py-3 font-semibold rounded-t-lg hover:bg-gray-100" data-tab="depenses">💰 Dépenses</button>
-                    <button onclick="showTab('equipe')" class="tab-btn px-6 py-3 font-semibold rounded-t-lg hover:bg-gray-100" data-tab="equipe">👥 Équipe</button>
-                    <button onclick="showTab('configuration')" id="configTab" class="tab-btn px-6 py-3 font-semibold rounded-t-lg hover:bg-gray-100" data-tab="configuration">⚙️ Configuration</button>
+                    <button onclick="showTab('dashboard')" class="tab-btn tab-active px-4 md:px-6 py-3 font-semibold rounded-t-lg" data-tab="dashboard">📊 Dashboard</button>
+                    <button onclick="showTab('commandes')" class="tab-btn px-4 md:px-6 py-3 font-semibold rounded-t-lg hover:bg-gray-100" data-tab="commandes">📦 Commandes</button>
+                    <button onclick="showTab('depenses')" id="depensesTab" class="tab-btn px-4 md:px-6 py-3 font-semibold rounded-t-lg hover:bg-gray-100" data-tab="depenses">💰 Dépenses</button>
+                    <button onclick="showTab('equipe')" class="tab-btn px-4 md:px-6 py-3 font-semibold rounded-t-lg hover:bg-gray-100" data-tab="equipe">👥 Équipe</button>
+                    <button onclick="showTab('configuration')" id="configTab" class="tab-btn px-4 md:px-6 py-3 font-semibold rounded-t-lg hover:bg-gray-100" data-tab="configuration">⚙️ Config</button>
                 </div>
             </div>
         </nav>
@@ -172,69 +302,69 @@
             <div id="tabDashboard" class="tab-content">
                 <!-- Filtres de dates -->
                 <div class="bg-white p-4 rounded-lg shadow mb-6">
-                    <div class="flex items-center space-x-4">
-                        <div>
+                    <div class="grid grid-cols-1 md:flex md:items-center gap-3 md:space-x-4">
+                        <div class="flex-1">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Date début</label>
-                            <input type="date" id="filterDateDebut" onchange="updateDashboard()" class="border rounded px-3 py-2">
+                            <input type="date" id="filterDateDebut" onchange="updateDashboard()" class="w-full border rounded px-3 py-2">
                         </div>
-                        <div>
+                        <div class="flex-1">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Date fin</label>
-                            <input type="date" id="filterDateFin" onchange="updateDashboard()" class="border rounded px-3 py-2">
+                            <input type="date" id="filterDateFin" onchange="updateDashboard()" class="w-full border rounded px-3 py-2">
                         </div>
-                        <button onclick="resetDateFilters()" class="mt-6 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+                        <button onclick="resetDateFilters()" class="md:mt-6 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 w-full md:w-auto">
                             Réinitialiser
                         </button>
                     </div>
                 </div>
 
                 <!-- KPIs -->
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-                    <div class="stat-card bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                    <div class="stat-card bg-white p-4 md:p-6 rounded-lg shadow border-l-4 border-blue-500">
                         <div class="flex items-center justify-between">
                             <div>
-                                <p class="text-gray-500 text-sm">CA Total</p>
-                                <p id="caTotal" class="text-3xl font-bold text-blue-600">0 F</p>
+                                <p class="text-gray-500 text-xs md:text-sm">CA Total</p>
+                                <p id="caTotal" class="text-xl md:text-3xl font-bold text-blue-600">0 F</p>
                             </div>
-                            <div class="text-4xl">💰</div>
+                            <div class="text-2xl md:text-4xl">💰</div>
                         </div>
                     </div>
-                    <div class="stat-card bg-white p-6 rounded-lg shadow border-l-4 border-red-500">
+                    <div class="stat-card bg-white p-4 md:p-6 rounded-lg shadow border-l-4 border-red-500">
                         <div class="flex items-center justify-between">
                             <div>
-                                <p class="text-gray-500 text-sm">Dépenses</p>
-                                <p id="depensesTotal" class="text-3xl font-bold text-red-600">0 F</p>
+                                <p class="text-gray-500 text-xs md:text-sm">Dépenses</p>
+                                <p id="depensesTotal" class="text-xl md:text-3xl font-bold text-red-600">0 F</p>
                             </div>
-                            <div class="text-4xl">📉</div>
+                            <div class="text-2xl md:text-4xl">📉</div>
                         </div>
                     </div>
-                    <div class="stat-card bg-white p-6 rounded-lg shadow border-l-4 border-green-500">
+                    <div class="stat-card bg-white p-4 md:p-6 rounded-lg shadow border-l-4 border-green-500">
                         <div class="flex items-center justify-between">
                             <div>
-                                <p class="text-gray-500 text-sm">Bénéfice</p>
-                                <p id="beneficeTotal" class="text-3xl font-bold text-green-600">0 F</p>
+                                <p class="text-gray-500 text-xs md:text-sm">Bénéfice</p>
+                                <p id="beneficeTotal" class="text-xl md:text-3xl font-bold text-green-600">0 F</p>
                             </div>
-                            <div class="text-4xl">📈</div>
+                            <div class="text-2xl md:text-4xl">📈</div>
                         </div>
                     </div>
-                    <div class="stat-card bg-white p-6 rounded-lg shadow border-l-4 border-purple-500">
+                    <div class="stat-card bg-white p-4 md:p-6 rounded-lg shadow border-l-4 border-purple-500">
                         <div class="flex items-center justify-between">
                             <div>
-                                <p class="text-gray-500 text-sm">Commandes</p>
-                                <p id="totalCommandes" class="text-3xl font-bold text-purple-600">0</p>
+                                <p class="text-gray-500 text-xs md:text-sm">Commandes</p>
+                                <p id="totalCommandes" class="text-xl md:text-3xl font-bold text-purple-600">0</p>
                             </div>
-                            <div class="text-4xl">📦</div>
+                            <div class="text-2xl md:text-4xl">📦</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Graphiques -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white p-6 rounded-lg shadow">
-                        <h3 class="text-lg font-semibold mb-4">CA par mois</h3>
+                    <div class="bg-white p-4 md:p-6 rounded-lg shadow">
+                        <h3 class="text-base md:text-lg font-semibold mb-4">CA par mois</h3>
                         <canvas id="caChart"></canvas>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow">
-                        <h3 class="text-lg font-semibold mb-4">Top 5 Dépenses</h3>
+                    <div class="bg-white p-4 md:p-6 rounded-lg shadow">
+                        <h3 class="text-base md:text-lg font-semibold mb-4">Top 5 Dépenses</h3>
                         <canvas id="depensesChart"></canvas>
                     </div>
                 </div>
@@ -244,7 +374,7 @@
             <div id="tabCommandes" class="tab-content hidden">
                 <!-- Filtres -->
                 <div class="bg-white p-4 rounded-lg shadow mb-4">
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
                         <input type="text" id="searchFilter" placeholder="🔍 Rechercher..." class="border rounded px-3 py-2" onkeyup="filterCommands()">
                         <select id="statusFilter" class="border rounded px-3 py-2" onchange="filterCommands()">
                             <option value="">Tous les statuts</option>
@@ -252,15 +382,15 @@
                         <select id="closingFilter" class="border rounded px-3 py-2" onchange="filterCommands()">
                             <option value="">Tous (Closing)</option>
                         </select>
-                        <div class="flex space-x-2">
+                        <div class="flex gap-2">
                             <input type="date" id="dateFilter" class="border rounded px-3 py-2 flex-1" onchange="filterCommands()">
                             <input type="date" id="dateFilterEnd" class="border rounded px-3 py-2 flex-1" onchange="filterCommands()">
                         </div>
                     </div>
                 </div>
 
-                <!-- Tableau -->
-                <div class="bg-white rounded-lg shadow">
+                <!-- Vue DESKTOP (Tableau) -->
+                <div class="vue-desktop bg-white rounded-lg shadow">
                     <div id="tableContainer">
                         <table id="commandsTable" class="w-full">
                             <thead class="bg-gray-50 border-b">
@@ -273,7 +403,7 @@
                                     <th class="px-2 py-3 text-left text-xs font-semibold text-gray-700">Email</th>
                                     <th class="px-2 py-3 text-left text-xs font-semibold text-gray-700">Téléphone</th>
                                     <th class="px-2 py-3 text-left text-xs font-semibold text-gray-700">Ville</th>
-                                    <th class="px-10 py-3 text-left text-xs font-semibold text-gray-700">Statut</th>
+                                    <th class="px-2 py-3 text-left text-xs font-semibold text-gray-700">Statut</th>
                                     <th class="px-2 py-3 text-left text-xs font-semibold text-gray-700">Closing</th>
                                     <th class="px-2 py-3 text-left text-xs font-semibold text-gray-700">Livreur</th>
                                     <th class="px-2 py-3 text-left text-xs font-semibold text-gray-700">Montant</th>
@@ -287,39 +417,46 @@
                         </table>
                     </div>
                 </div>
+
+                <!-- Vue MOBILE (Cartes) -->
+                <div class="vue-mobile" id="commandsCardContainer">
+                    <!-- Cartes chargées dynamiquement -->
+                </div>
             </div>
 
             <!-- Tab Dépenses -->
             <div id="tabDepenses" class="tab-content hidden">
-                <div class="bg-white p-6 rounded-lg shadow">
+                <div class="bg-white p-4 md:p-6 rounded-lg shadow">
                     <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-2xl font-bold">Gestion des dépenses</h2>
-                        <button onclick="ajouterDepense()" class="btn-gradient text-white px-4 py-2 rounded-lg">
-                            ➕ Ajouter une dépense
+                        <h2 class="text-xl md:text-2xl font-bold">Gestion des dépenses</h2>
+                        <button onclick="ajouterDepense()" class="btn-gradient text-white px-3 md:px-4 py-2 rounded-lg text-sm">
+                            ➕ Ajouter
                         </button>
                     </div>
-                    <table class="w-full">
-                        <thead class="bg-gray-50">
-                            <tr>
-                                <th class="px-4 py-3 text-left">Date</th>
-                                <th class="px-4 py-3 text-left">Catégorie</th>
-                                <th class="px-4 py-3 text-left">Description</th>
-                                <th class="px-4 py-3 text-right">Montant</th>
-                                <th class="px-4 py-3 text-center">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="depensesTableBody">
-                            <!-- Données chargées dynamiquement -->
-                        </tbody>
-                    </table>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-3 md:px-4 py-3 text-left text-xs md:text-sm">Date</th>
+                                    <th class="px-3 md:px-4 py-3 text-left text-xs md:text-sm">Catégorie</th>
+                                    <th class="px-3 md:px-4 py-3 text-left text-xs md:text-sm">Description</th>
+                                    <th class="px-3 md:px-4 py-3 text-right text-xs md:text-sm">Montant</th>
+                                    <th class="px-3 md:px-4 py-3 text-center text-xs md:text-sm">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="depensesTableBody">
+                                <!-- Données chargées dynamiquement -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
             <!-- Tab Équipe -->
             <div id="tabEquipe" class="tab-content hidden">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white p-6 rounded-lg shadow" id="julianaStats"></div>
-                    <div class="bg-white p-6 rounded-lg shadow" id="patriciaStats"></div>
+                    <div class="bg-white p-4 md:p-6 rounded-lg shadow" id="julianaStats"></div>
+                    <div class="bg-white p-4 md:p-6 rounded-lg shadow" id="patriciaStats"></div>
                 </div>
             </div>
 
@@ -327,26 +464,26 @@
             <div id="tabConfiguration" class="tab-content hidden">
                 <div class="space-y-6">
                     <!-- Équipe -->
-                    <div class="bg-white p-6 rounded-lg shadow">
-                        <h3 class="text-xl font-bold mb-4">Équipe Closing</h3>
+                    <div class="bg-white p-4 md:p-6 rounded-lg shadow">
+                        <h3 class="text-lg md:text-xl font-bold mb-4">Équipe Closing</h3>
                         <div id="collaborators-list" class="space-y-2 mb-4"></div>
-                        <button onclick="ajouterCollaborateur()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                        <button onclick="ajouterCollaborateur()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 w-full md:w-auto text-sm">
                             ➕ Ajouter une personne
                         </button>
                     </div>
 
                     <!-- Livreurs -->
-                    <div class="bg-white p-6 rounded-lg shadow">
-                        <h3 class="text-xl font-bold mb-4">Services de livraison</h3>
+                    <div class="bg-white p-4 md:p-6 rounded-lg shadow">
+                        <h3 class="text-lg md:text-xl font-bold mb-4">Services de livraison</h3>
                         <div id="delivery-services-list" class="space-y-2 mb-4"></div>
-                        <button onclick="ajouterLivreur()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                        <button onclick="ajouterLivreur()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 w-full md:w-auto text-sm">
                             ➕ Ajouter un service
                         </button>
                     </div>
 
                     <!-- Couleurs des statuts -->
-                    <div class="bg-white p-6 rounded-lg shadow">
-                        <h3 class="text-xl font-bold mb-4">Couleurs des statuts</h3>
+                    <div class="bg-white p-4 md:p-6 rounded-lg shadow">
+                        <h3 class="text-lg md:text-xl font-bold mb-4">Couleurs des statuts</h3>
                         <div id="status-colors-list" class="space-y-3"></div>
                     </div>
                 </div>
@@ -555,9 +692,10 @@
             return filtered;
         }
 
-        // Mettre à jour le tableau des commandes
+        // Mettre à jour le tableau des commandes (DESKTOP)
         function updateCommandsTable() {
             const tbody = document.getElementById('commandsTableBody');
+            const cardContainer = document.getElementById('commandsCardContainer');
             const filtered = getFilteredCommands();
             
             // Détecter les doublons
@@ -566,6 +704,7 @@
                 phoneCount[cmd.telephone] = (phoneCount[cmd.telephone] || 0) + 1;
             });
 
+            // Vue DESKTOP (Tableau)
             tbody.innerHTML = filtered.map(cmd => {
                 const isDuplicate = phoneCount[cmd.telephone] > 1;
                 const bgColor = appState.statusColors[cmd.statut] || '#ffffff';
@@ -587,7 +726,7 @@
                         </td>
                         <td class="px-2 py-2 text-xs">${cmd.ville}</td>
                         <td class="px-2 py-2">
-                            <select onchange="updateCommand(${cmd.sheetRow}, 'statut', this.value)" class="border rounded px-2 py-2 text-sm w-full">
+                            <select onchange="updateCommand(${cmd.sheetRow}, 'statut', this.value)" class="border rounded px-1 py-1 text-xs w-full">
                                 ${appState.statuts.map(s => `<option value="${s}" ${cmd.statut === s ? 'selected' : ''}>${s}</option>`).join('')}
                             </select>
                         </td>
@@ -613,6 +752,89 @@
                             <textarea onchange="updateCommand(${cmd.sheetRow}, 'com2', this.value)" class="border rounded px-2 py-1 text-xs comment-input w-full" rows="2">${cmd.com2}</textarea>
                         </td>
                     </tr>
+                `;
+            }).join('');
+
+            // Vue MOBILE (Cartes)
+            cardContainer.innerHTML = filtered.map(cmd => {
+                const isDuplicate = phoneCount[cmd.telephone] > 1;
+                const bgColor = appState.statusColors[cmd.statut] || '#ffffff';
+                const canEditMontant = appState.userRole === 'admin';
+
+                return `
+                    <div class="command-card" style="border-left-color: ${bgColor !== '#ffffff' ? bgColor : '#667eea'}; background-color: ${bgColor};">
+                        <div class="command-card-header">
+                            <div>
+                                <div class="command-card-id">#${cmd.sheetRow} - ${cmd.id}</div>
+                                <div class="command-card-name">${cmd.nom}</div>
+                            </div>
+                            ${isDuplicate ? '<span class="bg-red-500 text-white text-xs px-2 py-1 rounded font-semibold">DOUBLON</span>' : ''}
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <div class="command-card-info">
+                                <span class="command-card-label">📞 Téléphone:</span>
+                                <a href="${cmd.lienWha}" target="_blank" class="command-card-value text-green-600 font-semibold ${isDuplicate ? 'duplicate-phone' : ''}">${cmd.telephone}</a>
+                            </div>
+                            
+                            <div class="command-card-info">
+                                <span class="command-card-label">📍 Ville:</span>
+                                <span class="command-card-value">${cmd.ville}</span>
+                            </div>
+                            
+                            <div class="command-card-info">
+                                <span class="command-card-label">📦 Produit:</span>
+                                <span class="command-card-value text-sm">${cmd.produit.substring(0, 50)}...</span>
+                            </div>
+                            
+                            <div class="command-card-info">
+                                <span class="command-card-label">📅 Date:</span>
+                                <span class="command-card-value">${cmd.date}</span>
+                            </div>
+                            
+                            <div>
+                                <label class="command-card-label block mb-1">Statut:</label>
+                                <select onchange="updateCommand(${cmd.sheetRow}, 'statut', this.value)" class="mobile-select">
+                                    ${appState.statuts.map(s => `<option value="${s}" ${cmd.statut === s ? 'selected' : ''}>${s}</option>`).join('')}
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="command-card-label block mb-1">Closing:</label>
+                                <select onchange="updateCommand(${cmd.sheetRow}, 'closing', this.value)" class="mobile-select" ${appState.userRole === 'closing' && appState.currentUser === 'Patricia' ? 'disabled' : ''}>
+                                    <option value="">Non assigné</option>
+                                    ${appState.collaborators.map(c => `<option value="${c}" ${cmd.closing === c ? 'selected' : ''}>${c}</option>`).join('')}
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="command-card-label block mb-1">Livreur:</label>
+                                <select onchange="updateCommand(${cmd.sheetRow}, 'livreur', this.value)" class="mobile-select">
+                                    <option value="">Non assigné</option>
+                                    ${appState.deliveryServices.map(l => `<option value="${l}" ${cmd.livreur === l ? 'selected' : ''}>${l}</option>`).join('')}
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="command-card-label block mb-1">💰 Montant (F):</label>
+                                <input type="number" value="${cmd.montant}" onchange="updateCommand(${cmd.sheetRow}, 'montant', this.value)" class="mobile-input" ${!canEditMontant ? 'readonly' : ''}>
+                            </div>
+                            
+                            <div>
+                                <label class="command-card-label block mb-1">📝 Commentaire 1:</label>
+                                <textarea onchange="updateCommand(${cmd.sheetRow}, 'com1', this.value)" class="mobile-textarea">${cmd.com1}</textarea>
+                            </div>
+                            
+                            <div>
+                                <label class="command-card-label block mb-1">📝 Commentaire 2:</label>
+                                <textarea onchange="updateCommand(${cmd.sheetRow}, 'com2', this.value)" class="mobile-textarea">${cmd.com2}</textarea>
+                            </div>
+                            
+                            <a href="${cmd.lienWha}" target="_blank" class="btn-mobile bg-green-500 hover:bg-green-600 text-white mt-3">
+                                💬 Ouvrir WhatsApp
+                            </a>
+                        </div>
+                    </div>
                 `;
             }).join('');
 
@@ -673,6 +895,7 @@
             const dateStart = document.getElementById('dateFilter').value;
             const dateEnd = document.getElementById('dateFilterEnd').value;
 
+            // Filtrer le tableau DESKTOP
             const tbody = document.getElementById('commandsTableBody');
             const rows = tbody.getElementsByTagName('tr');
 
@@ -694,6 +917,29 @@
                 if (dateEnd && cmdDate > dateEnd) show = false;
 
                 row.style.display = show ? '' : 'none';
+            });
+
+            // Filtrer les cartes MOBILE
+            const cardContainer = document.getElementById('commandsCardContainer');
+            const cards = cardContainer.getElementsByClassName('command-card');
+
+            Array.from(cards).forEach(card => {
+                const text = card.textContent.toLowerCase();
+                const selects = card.getElementsByTagName('select');
+                const cmdStatus = selects[0] ? selects[0].value : '';
+                const cmdClosing = selects[1] ? selects[1].value : '';
+                const dateText = card.querySelector('.command-card-value:nth-of-type(4)');
+                const cmdDate = dateText ? dateText.textContent : '';
+
+                let show = true;
+
+                if (search && !text.includes(search)) show = false;
+                if (status && cmdStatus !== status) show = false;
+                if (closing && cmdClosing !== closing) show = false;
+                if (dateStart && cmdDate < dateStart) show = false;
+                if (dateEnd && cmdDate > dateEnd) show = false;
+
+                card.style.display = show ? '' : 'none';
             });
         }
 
@@ -772,6 +1018,7 @@
                 },
                 options: {
                     responsive: true,
+                    maintainAspectRatio: true,
                     scales: {
                         y: { beginAtZero: true }
                     }
@@ -814,7 +1061,8 @@
                     }]
                 },
                 options: {
-                    responsive: true
+                    responsive: true,
+                    maintainAspectRatio: true
                 }
             });
         }
@@ -852,11 +1100,11 @@
             const tbody = document.getElementById('depensesTableBody');
             tbody.innerHTML = appState.depenses.map(dep => `
                 <tr>
-                    <td class="px-4 py-3">${dep.date}</td>
-                    <td class="px-4 py-3">${dep.categorie}</td>
-                    <td class="px-4 py-3">${dep.description}</td>
-                    <td class="px-4 py-3 text-right font-semibold">${dep.montant.toLocaleString()} F</td>
-                    <td class="px-4 py-3 text-center">
+                    <td class="px-3 md:px-4 py-3 text-xs md:text-sm">${dep.date}</td>
+                    <td class="px-3 md:px-4 py-3 text-xs md:text-sm">${dep.categorie}</td>
+                    <td class="px-3 md:px-4 py-3 text-xs md:text-sm">${dep.description}</td>
+                    <td class="px-3 md:px-4 py-3 text-right font-semibold text-xs md:text-sm">${dep.montant.toLocaleString()} F</td>
+                    <td class="px-3 md:px-4 py-3 text-center">
                         <button onclick="supprimerDepense(${dep.id})" class="text-red-500 hover:text-red-700">🗑️</button>
                     </td>
                 </tr>
@@ -886,23 +1134,23 @@
 
                 const container = document.getElementById(name.toLowerCase() + 'Stats');
                 container.innerHTML = `
-                    <h3 class="text-xl font-bold mb-4">${name}</h3>
+                    <h3 class="text-lg md:text-xl font-bold mb-4">${name}</h3>
                     <div class="space-y-3">
                         <div>
-                            <p class="text-gray-600">Commandes traitées</p>
-                            <p class="text-2xl font-bold">${commands.length}</p>
+                            <p class="text-gray-600 text-sm">Commandes traitées</p>
+                            <p class="text-xl md:text-2xl font-bold">${commands.length}</p>
                         </div>
                         <div>
-                            <p class="text-gray-600">Taux de confirmation</p>
-                            <p class="text-2xl font-bold text-blue-600">${tauxConfirmation}%</p>
+                            <p class="text-gray-600 text-sm">Taux de confirmation</p>
+                            <p class="text-xl md:text-2xl font-bold text-blue-600">${tauxConfirmation}%</p>
                         </div>
                         <div>
-                            <p class="text-gray-600">Taux de livraison</p>
-                            <p class="text-2xl font-bold text-green-600">${tauxLivraison}%</p>
+                            <p class="text-gray-600 text-sm">Taux de livraison</p>
+                            <p class="text-xl md:text-2xl font-bold text-green-600">${tauxLivraison}%</p>
                         </div>
                         <div>
-                            <p class="text-gray-600">CA généré</p>
-                            <p class="text-2xl font-bold text-purple-600">${ca.toLocaleString()} F</p>
+                            <p class="text-gray-600 text-sm">CA généré</p>
+                            <p class="text-xl md:text-2xl font-bold text-purple-600">${ca.toLocaleString()} F</p>
                         </div>
                     </div>
                 `;
@@ -956,29 +1204,29 @@
             // Liste des collaborateurs
             const collabList = document.getElementById('collaborators-list');
             collabList.innerHTML = appState.collaborators.map(c => `
-                <div class="flex items-center justify-between bg-gray-50 p-3 rounded">
+                <div class="flex items-center justify-between bg-gray-50 p-3 rounded text-sm">
                     <span>${c}</span>
-                    <button onclick="supprimerCollaborateur('${c}')" class="text-red-500 hover:text-red-700">🗑️ Supprimer</button>
+                    <button onclick="supprimerCollaborateur('${c}')" class="text-red-500 hover:text-red-700 text-xs md:text-sm">🗑️ Supprimer</button>
                 </div>
             `).join('');
 
             // Liste des livreurs
             const deliveryList = document.getElementById('delivery-services-list');
             deliveryList.innerHTML = appState.deliveryServices.map(l => `
-                <div class="flex items-center justify-between bg-gray-50 p-3 rounded">
+                <div class="flex items-center justify-between bg-gray-50 p-3 rounded text-sm">
                     <span>${l}</span>
-                    <button onclick="supprimerLivreur('${l}')" class="text-red-500 hover:text-red-700">🗑️ Supprimer</button>
+                    <button onclick="supprimerLivreur('${l}')" class="text-red-500 hover:text-red-700 text-xs md:text-sm">🗑️ Supprimer</button>
                 </div>
             `).join('');
 
             // Couleurs des statuts
             const statusList = document.getElementById('status-colors-list');
             statusList.innerHTML = appState.statuts.map(s => `
-                <div class="flex items-center space-x-4">
-                    <span class="w-40">${s}</span>
+                <div class="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
+                    <span class="w-full md:w-40 text-sm">${s}</span>
                     <input type="text" value="${appState.statusColors[s] || '#ffffff'}" 
                         onchange="updateStatusColor('${s}', this.value)"
-                        class="border rounded px-3 py-2 w-32" placeholder="#RRGGBB">
+                        class="border rounded px-3 py-2 w-full md:w-32 text-sm" placeholder="#RRGGBB">
                     <input type="color" value="${appState.statusColors[s] || '#ffffff'}"
                         onchange="updateStatusColor('${s}', this.value)"
                         class="w-12 h-10 rounded cursor-pointer">
@@ -1027,9 +1275,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
