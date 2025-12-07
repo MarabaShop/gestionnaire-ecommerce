@@ -47,134 +47,41 @@
             font-weight: bold;
         }
         
-        /* Styles DESKTOP */
-        @media (min-width: 768px) {
-            .vue-mobile {
-                display: none !important;
-            }
-            
-            .vue-desktop {
-                display: block !important;
-            }
-            
-            #tableContainer {
-                max-height: calc(100vh - 250px);
-                overflow: auto;
-                position: relative;
-            }
-            
-            #commandsTable thead {
-                position: sticky;
-                top: 0;
-                z-index: 10;
-                background: white;
-            }
-            
-            #commandsTable td:nth-child(1),
-            #commandsTable td:nth-child(2),
-            #commandsTable th:nth-child(1),
-            #commandsTable th:nth-child(2) {
-                position: sticky;
-                background: white;
-                z-index: 5;
-            }
-            
-            #commandsTable td:nth-child(1),
-            #commandsTable th:nth-child(1) {
-                left: 0;
-            }
-            
-            #commandsTable td:nth-child(2),
-            #commandsTable th:nth-child(2) {
-                left: 50px;
-            }
+        /* Styles pour tableau responsive */
+        #tableContainer {
+            max-height: calc(100vh - 250px);
+            overflow: auto;
+            position: relative;
         }
         
-        /* Styles MOBILE */
+        #commandsTable thead {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: white;
+        }
+        
+        #commandsTable td:nth-child(1),
+        #commandsTable td:nth-child(2),
+        #commandsTable th:nth-child(1),
+        #commandsTable th:nth-child(2) {
+            position: sticky;
+            background: white;
+            z-index: 5;
+        }
+        
+        #commandsTable td:nth-child(1),
+        #commandsTable th:nth-child(1) {
+            left: 0;
+        }
+        
+        #commandsTable td:nth-child(2),
+        #commandsTable th:nth-child(2) {
+            left: 50px;
+        }
+        
+        /* Styles MOBILE - Optimisation du tableau */
         @media (max-width: 767px) {
-            .vue-mobile {
-                display: block !important;
-            }
-            
-            .vue-desktop {
-                display: none !important;
-            }
-            
-            .command-card {
-                background: white;
-                border-radius: 12px;
-                padding: 16px;
-                margin-bottom: 12px;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-                border-left: 4px solid #667eea;
-            }
-            
-            .command-card-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 12px;
-                padding-bottom: 12px;
-                border-bottom: 1px solid #e5e7eb;
-            }
-            
-            .command-card-id {
-                font-size: 0.75rem;
-                color: #6b7280;
-                font-weight: 600;
-            }
-            
-            .command-card-name {
-                font-size: 1rem;
-                font-weight: bold;
-                color: #1f2937;
-            }
-            
-            .command-card-info {
-                margin-bottom: 8px;
-                display: flex;
-                align-items: center;
-                font-size: 0.875rem;
-            }
-            
-            .command-card-label {
-                font-weight: 600;
-                color: #4b5563;
-                min-width: 80px;
-            }
-            
-            .command-card-value {
-                color: #1f2937;
-                flex: 1;
-            }
-            
-            .mobile-select, .mobile-input, .mobile-textarea {
-                width: 100%;
-                padding: 10px;
-                border: 1px solid #d1d5db;
-                border-radius: 8px;
-                font-size: 0.875rem;
-                margin-top: 4px;
-                touch-action: manipulation;
-            }
-            
-            .mobile-textarea {
-                min-height: 60px;
-            }
-            
-            .btn-mobile {
-                width: 100%;
-                padding: 12px;
-                border-radius: 8px;
-                font-weight: 600;
-                font-size: 0.875rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 8px;
-                touch-action: manipulation;
-            }
-            
             .mobile-header {
                 padding: 12px 16px !important;
             }
@@ -204,6 +111,24 @@
             
             .hidden-mobile {
                 display: none !important;
+            }
+            
+            /* Tableau plus lisible sur mobile */
+            #commandsTable {
+                font-size: 0.7rem;
+            }
+            
+            #commandsTable th,
+            #commandsTable td {
+                padding: 8px 4px !important;
+            }
+            
+            #commandsTable select,
+            #commandsTable input,
+            #commandsTable textarea {
+                font-size: 0.7rem !important;
+                padding: 6px 4px !important;
+                min-width: 100px;
             }
         }
         
@@ -242,7 +167,7 @@
             <div class="space-y-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Nom d'utilisateur</label>
-                    <input type="text" id="username" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple-500 focus:outline-none" placeholder="admin, juliana ou patricia">
+                    <input type="text" id="username" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple-500 focus:outline-none" placeholder="Entrez votre identifiant">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Mot de passe</label>
@@ -389,8 +314,8 @@
                     </div>
                 </div>
 
-                <!-- Vue DESKTOP (Tableau) -->
-                <div class="vue-desktop bg-white rounded-lg shadow">
+                <!-- Tableau -->
+                <div class="bg-white rounded-lg shadow">
                     <div id="tableContainer">
                         <table id="commandsTable" class="w-full">
                             <thead class="bg-gray-50 border-b">
@@ -403,7 +328,7 @@
                                     <th class="px-2 py-3 text-left text-xs font-semibold text-gray-700">Email</th>
                                     <th class="px-2 py-3 text-left text-xs font-semibold text-gray-700">Téléphone</th>
                                     <th class="px-2 py-3 text-left text-xs font-semibold text-gray-700">Ville</th>
-                                    <th class="px-2 py-3 text-left text-xs font-semibold text-gray-700">Statut</th>
+                                    <th class="px-10 py-3 text-left text-xs font-semibold text-gray-700">Statut</th>
                                     <th class="px-2 py-3 text-left text-xs font-semibold text-gray-700">Closing</th>
                                     <th class="px-2 py-3 text-left text-xs font-semibold text-gray-700">Livreur</th>
                                     <th class="px-2 py-3 text-left text-xs font-semibold text-gray-700">Montant</th>
@@ -416,11 +341,6 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-
-                <!-- Vue MOBILE (Cartes) -->
-                <div class="vue-mobile" id="commandsCardContainer">
-                    <!-- Cartes chargées dynamiquement -->
                 </div>
             </div>
 
@@ -692,10 +612,9 @@
             return filtered;
         }
 
-        // Mettre à jour le tableau des commandes (DESKTOP)
+        // Mettre à jour le tableau des commandes
         function updateCommandsTable() {
             const tbody = document.getElementById('commandsTableBody');
-            const cardContainer = document.getElementById('commandsCardContainer');
             const filtered = getFilteredCommands();
             
             // Détecter les doublons
@@ -704,7 +623,6 @@
                 phoneCount[cmd.telephone] = (phoneCount[cmd.telephone] || 0) + 1;
             });
 
-            // Vue DESKTOP (Tableau)
             tbody.innerHTML = filtered.map(cmd => {
                 const isDuplicate = phoneCount[cmd.telephone] > 1;
                 const bgColor = appState.statusColors[cmd.statut] || '#ffffff';
@@ -752,89 +670,6 @@
                             <textarea onchange="updateCommand(${cmd.sheetRow}, 'com2', this.value)" class="border rounded px-2 py-1 text-xs comment-input w-full" rows="2">${cmd.com2}</textarea>
                         </td>
                     </tr>
-                `;
-            }).join('');
-
-            // Vue MOBILE (Cartes)
-            cardContainer.innerHTML = filtered.map(cmd => {
-                const isDuplicate = phoneCount[cmd.telephone] > 1;
-                const bgColor = appState.statusColors[cmd.statut] || '#ffffff';
-                const canEditMontant = appState.userRole === 'admin';
-
-                return `
-                    <div class="command-card" style="border-left-color: ${bgColor !== '#ffffff' ? bgColor : '#667eea'}; background-color: ${bgColor};">
-                        <div class="command-card-header">
-                            <div>
-                                <div class="command-card-id">#${cmd.sheetRow} - ${cmd.id}</div>
-                                <div class="command-card-name">${cmd.nom}</div>
-                            </div>
-                            ${isDuplicate ? '<span class="bg-red-500 text-white text-xs px-2 py-1 rounded font-semibold">DOUBLON</span>' : ''}
-                        </div>
-                        
-                        <div class="space-y-3">
-                            <div class="command-card-info">
-                                <span class="command-card-label">📞 Téléphone:</span>
-                                <a href="${cmd.lienWha}" target="_blank" class="command-card-value text-green-600 font-semibold ${isDuplicate ? 'duplicate-phone' : ''}">${cmd.telephone}</a>
-                            </div>
-                            
-                            <div class="command-card-info">
-                                <span class="command-card-label">📍 Ville:</span>
-                                <span class="command-card-value">${cmd.ville}</span>
-                            </div>
-                            
-                            <div class="command-card-info">
-                                <span class="command-card-label">📦 Produit:</span>
-                                <span class="command-card-value text-sm">${cmd.produit.substring(0, 50)}...</span>
-                            </div>
-                            
-                            <div class="command-card-info">
-                                <span class="command-card-label">📅 Date:</span>
-                                <span class="command-card-value">${cmd.date}</span>
-                            </div>
-                            
-                            <div>
-                                <label class="command-card-label block mb-1">Statut:</label>
-                                <select onchange="updateCommand(${cmd.sheetRow}, 'statut', this.value)" class="mobile-select">
-                                    ${appState.statuts.map(s => `<option value="${s}" ${cmd.statut === s ? 'selected' : ''}>${s}</option>`).join('')}
-                                </select>
-                            </div>
-                            
-                            <div>
-                                <label class="command-card-label block mb-1">Closing:</label>
-                                <select onchange="updateCommand(${cmd.sheetRow}, 'closing', this.value)" class="mobile-select" ${appState.userRole === 'closing' && appState.currentUser === 'Patricia' ? 'disabled' : ''}>
-                                    <option value="">Non assigné</option>
-                                    ${appState.collaborators.map(c => `<option value="${c}" ${cmd.closing === c ? 'selected' : ''}>${c}</option>`).join('')}
-                                </select>
-                            </div>
-                            
-                            <div>
-                                <label class="command-card-label block mb-1">Livreur:</label>
-                                <select onchange="updateCommand(${cmd.sheetRow}, 'livreur', this.value)" class="mobile-select">
-                                    <option value="">Non assigné</option>
-                                    ${appState.deliveryServices.map(l => `<option value="${l}" ${cmd.livreur === l ? 'selected' : ''}>${l}</option>`).join('')}
-                                </select>
-                            </div>
-                            
-                            <div>
-                                <label class="command-card-label block mb-1">💰 Montant (F):</label>
-                                <input type="number" value="${cmd.montant}" onchange="updateCommand(${cmd.sheetRow}, 'montant', this.value)" class="mobile-input" ${!canEditMontant ? 'readonly' : ''}>
-                            </div>
-                            
-                            <div>
-                                <label class="command-card-label block mb-1">📝 Commentaire 1:</label>
-                                <textarea onchange="updateCommand(${cmd.sheetRow}, 'com1', this.value)" class="mobile-textarea">${cmd.com1}</textarea>
-                            </div>
-                            
-                            <div>
-                                <label class="command-card-label block mb-1">📝 Commentaire 2:</label>
-                                <textarea onchange="updateCommand(${cmd.sheetRow}, 'com2', this.value)" class="mobile-textarea">${cmd.com2}</textarea>
-                            </div>
-                            
-                            <a href="${cmd.lienWha}" target="_blank" class="btn-mobile bg-green-500 hover:bg-green-600 text-white mt-3">
-                                💬 Ouvrir WhatsApp
-                            </a>
-                        </div>
-                    </div>
                 `;
             }).join('');
 
@@ -895,7 +730,6 @@
             const dateStart = document.getElementById('dateFilter').value;
             const dateEnd = document.getElementById('dateFilterEnd').value;
 
-            // Filtrer le tableau DESKTOP
             const tbody = document.getElementById('commandsTableBody');
             const rows = tbody.getElementsByTagName('tr');
 
@@ -917,29 +751,6 @@
                 if (dateEnd && cmdDate > dateEnd) show = false;
 
                 row.style.display = show ? '' : 'none';
-            });
-
-            // Filtrer les cartes MOBILE
-            const cardContainer = document.getElementById('commandsCardContainer');
-            const cards = cardContainer.getElementsByClassName('command-card');
-
-            Array.from(cards).forEach(card => {
-                const text = card.textContent.toLowerCase();
-                const selects = card.getElementsByTagName('select');
-                const cmdStatus = selects[0] ? selects[0].value : '';
-                const cmdClosing = selects[1] ? selects[1].value : '';
-                const dateText = card.querySelector('.command-card-value:nth-of-type(4)');
-                const cmdDate = dateText ? dateText.textContent : '';
-
-                let show = true;
-
-                if (search && !text.includes(search)) show = false;
-                if (status && cmdStatus !== status) show = false;
-                if (closing && cmdClosing !== closing) show = false;
-                if (dateStart && cmdDate < dateStart) show = false;
-                if (dateEnd && cmdDate > dateEnd) show = false;
-
-                card.style.display = show ? '' : 'none';
             });
         }
 
